@@ -1,0 +1,8 @@
+"use client";
+import BadgeCard from "@/components/BadgeCard";
+import ProgressBar from "@/components/ProgressBar";
+import { badges } from "@/data/badges";
+import { useProgress } from "@/lib/useProgress";
+import { getLearningLevel } from "@/lib/score";
+export default function ProfilePage(){const {progress}=useProgress();return <main className="mx-auto max-w-6xl px-5 py-12"><div className="glass overflow-hidden rounded-3xl"><div className="bg-gradient-to-r from-cyan-500/20 via-blue-500/10 to-lime-400/10 p-8 md:flex md:items-center md:justify-between"><div className="flex items-center gap-5"><div className="grid h-20 w-20 place-items-center rounded-3xl bg-cyan-300 text-4xl">🚘</div><div><p className="eyebrow">DRIVER PROFILE</p><h1 className="mt-2 text-3xl font-black">智慧交通探索者</h1><p className="mt-1 text-slate-400">学习等级 Lv.{getLearningLevel(progress.points)}</p></div></div><div className="mt-7 grid grid-cols-2 gap-3 md:mt-0"><Stat value={progress.completedLevels.length} label="已通关"/><Stat value={progress.points} label="总积分 XP"/></div></div><div className="p-8"><ProgressBar value={Math.round(progress.completedLevels.length/16*100)} label="全课程完成度"/></div></div><section className="mt-12"><p className="eyebrow">ACHIEVEMENT GARAGE</p><h2 className="mt-2 text-3xl font-black">我的徽章</h2><div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">{badges.map(b=><BadgeCard key={b.id} badge={b} unlocked={progress.completedLevels.length>=b.requirement}/>)}</div></section></main>}
+function Stat({value,label}:{value:number;label:string}){return <div className="min-w-28 rounded-2xl bg-slate-950/40 p-4 text-center"><strong className="text-2xl text-cyan-200">{value}</strong><p className="mt-1 text-xs text-slate-400">{label}</p></div>}

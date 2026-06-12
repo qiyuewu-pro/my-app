@@ -1,0 +1,2 @@
+import type { Badge } from "@/data/badges";
+export default function BadgeCard({ badge, unlocked }: { badge: Badge; unlocked: boolean }) { return <div className={`glass rounded-2xl p-5 ${unlocked ? "" : "opacity-35 grayscale"}`}><div className={`mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br text-3xl ${badge.color}`}>{unlocked ? badge.icon : "🔒"}</div><h3 className="font-bold">{badge.name}</h3><p className="mt-1 text-sm text-slate-400">{badge.description}</p></div>; }

@@ -1,0 +1,6 @@
+import Link from "next/link";
+import type { Level } from "@/data/levels";
+export default function LevelCard({ level, state }: { level: Level; state: "complete" | "current" | "locked" }) {
+  const card = <div className={`glass relative h-full rounded-2xl p-5 transition ${state === "current" ? "-translate-y-1 border-cyan-300/70 bg-cyan-300/10" : state === "locked" ? "opacity-45 grayscale" : "border-lime-300/25"}`}><div className="mb-5 flex items-start justify-between"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 text-2xl">{state === "locked" ? "🔒" : level.icon}</span><span className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${state === "complete" ? "bg-lime-300/15 text-lime-300" : state === "current" ? "bg-cyan-300 text-slate-950" : "bg-white/5 text-slate-500"}`}>{state === "complete" ? "已通关" : state === "current" ? "当前任务" : "未解锁"}</span></div><div className="eyebrow">LEVEL {String(level.id).padStart(2,"0")} · {level.district}</div><h3 className="mt-2 min-h-14 text-lg font-bold">{level.title}</h3><div className="mt-4 flex justify-between text-xs text-slate-400"><span>{level.gameType.toUpperCase()} 任务</span><span>+{level.xp} XP</span></div></div>;
+  return state === "locked" ? card : <Link href={`/lesson/${level.id}`} className="block h-full">{card}</Link>;
+}
