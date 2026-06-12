@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; color: #e5f7ff; background: #06101d; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .22; background-image: linear-gradient(rgba(34,211,238,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,.12) 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
+@layer components {
+  .glass { @apply border border-cyan-300/15 bg-slate-900/70 shadow-glow backdrop-blur-xl; }
+  .btn-primary { @apply inline-flex items-center justify-center rounded-xl bg-cyan-300 px-5 py-3 font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-200; }
+  .btn-secondary { @apply inline-flex items-center justify-center rounded-xl border border-cyan-300/30 bg-cyan-300/5 px-5 py-3 font-semibold text-cyan-100 transition hover:bg-cyan-300/10; }
+  .eyebrow { @apply text-xs font-bold uppercase tracking-[0.24em] text-cyan-300; }
+}
